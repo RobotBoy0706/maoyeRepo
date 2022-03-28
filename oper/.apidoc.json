@@ -1,0 +1,14 @@
+{
+    "version": "3.1.5",
+    "inputs": [
+        {
+            "lang": "go",
+            "dir": "/maoyetrpg-back/oper",
+            "recursive": true
+        }
+    ],
+    "output": {
+        "dir": "/maoyetrpg-back/oper/doc",
+        "type": "html"
+    }
+}

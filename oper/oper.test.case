@@ -1,0 +1,59 @@
+------------------------------------------------------------------------------------------------------------------------------------
+
+-- 查看文章列表
+curl -g -X GET '127.0.0.1:54300/api/v1/rolecard/list?name=invitation&page=1&nextpage=1&pagesize=10&filter={"stat":1}'
+
+[url param]   name=article
+[url param]  filter={"stat":1}    --stat 1 等待审核 2 已审核通过 3 审核通过  传不同的类型 ,如果要查询全部,filter 传空即可
+[url param]  full_text:"zhao"    --全文搜索标题包含"zhao" 的
+[url param]  filter:{"pub_time":{"$gte":开始时间戳,"$lte":结束时间戳}}    --按照时间端查询
+[url param]  page:1    --进行操作所在的页
+[url param]  nextpage:1    --需要跳转的页
+[url param]  pagesize:10    --需要返回的数据条数
+[url param]  sort:-pub_time    --按照时间端查询
+
+------------------------------------------------------------------------------------------------------------------------------------
+--查看文章数量
+
+curl -g -X GET '127.0.0.1:54300/api/v1/rolecard/count?name=invitation&filter={"stat":1}'
+[url param]   name=article
+[url param]  filter={"stat":1}    --stat 1 等待审核 2 已审核通过 3 审核通过  传不同的类型 ,如果要查询全部,filter 传空即可
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+--查看举报列表
+
+curl -g -X GET '127.0.0.1:54300/api/v1/rolecard/list?name=report&page=1&nextpage=1&pagesize=10&filter={"stat":1}'
+
+[url param]   name=article
+[url param]  filter={"stat":1}    --stat 1 未审核 2 已处理
+[url param]  page:1    --进行操作所在的页
+[url param]  nextpage:1    --需要跳转的页
+[url param]  pagesize:10    --需要返回的数据条数
+------------------------------------------------------------------------------------------------------------------------------------
+
+--查看举报详情
+
+curl -X GET '127.0.0.1:54300/api/v1/collection/detail?name=report&id=61a8f3cfdffa719989ed960b'
+
+[url param]   name=article
+[url param]   id=举报列表 _id
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+-- 处理举报
+
+curl -X GET '127.0.0.1:54300/api/v1/report/update?name=report&id=61a8f3cfdffa719989ed960b&stat=2
+
+[url param]   name=article
+[url param]   id=举报列表 _id
+[url param]   stat= 2 审核通过 3 审核不通过
+------------------------------------------------------------------------------------------------------------------------------------
+-- 文章审核
+curl -g -X PUT '127.0.0.1:54300/api/v1/rolecard/update?name=article&filter={"_id":"61c29ee43e83c30e639f6df9"}&userid=1' -H 'Content-Type: application/json' --data-raw '{"stat":2}'
+
+
+[url param]   name=article
+[url param]   filter=文章列表 _id
+[url param]   userid=文章列表 _id
+[body param]   stat= 2 审核通过 3 审核不通过

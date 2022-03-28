@@ -1,0 +1,122 @@
+！！！以下接口都为交流区相关接口，文章和交流区业务相似  "invitation" =>"article" ，"invitation_comment" =>"article_comment" 即可
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+--发布交流区
+curl -X POST '127.0.0.1:54218/api/v1/rolecard/info?name=article&userid=1' -H 'Content-Type: application/json' --data-raw '{
+    "title":"zlx",
+    "content":"test帖子内容",
+    "type":"组团",
+    "md5_list":["2f4ef343e3d0e3e2b8639db8f31222bd"]
+}'
+
+[url param]   name="invitation"
+[body param]  title  标题
+[body param]  content  内容
+[body param]  type   精品/组团/闲聊/其他
+[body param]  md5_list   图片的md5 ，单独从content 提取出来，需要走自动审核
+------------------------------------------------------------------------------------------------------------------------------------
+
+--查询交流区数量
+curl -g -X GET '127.0.0.1:54218/api/v1/rolecard/count?name=invitation&userid=1&filter={"type":"精品"}'
+
+
+[url param]   name:"invitation" //invitation 交流区 article 文章  invitation_comment 交流区评论  article_comment 文章评论
+[body param]  filter:{"type":"组团"}    --带type  传不同的类型 ,如果要查询全部,filter 传空即可
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+--查询交流区内容
+curl --location --request GET '127.0.0.1:54218/api/v1/rolecard/list?name=invitation&userid=123456&page=2&nextpage=1&pagesize=10&sort=pub_time'
+
+[url param]   name:"invitation"
+[url param]  filter:{"type":"组团"}    --带type  传不同的类型 ,如果要查询全部,filter 传空即可
+[url param]  full_text:"zhao"    --全文搜索标题包含"zhao" 的
+[url param]  filter:{"pub_time":{"$gte":开始时间戳,"$lte":结束时间戳}}    --按照时间端查询
+[url param]  page:1    --进行操作所在的页
+[url param]  nextpage:1    --需要跳转的页
+[url param]  pagesize:10    --需要返回的数据条数
+[url param]  sort:-pub_time    --按照时间端查询
+
+------------------------------------------------------------------------------------------------------------------------------------
+交流区点赞/取消点赞
+curl -X GET '127.0.0.1:54218/api/v1/article/like?name=invitation&userid=2&id=61a63945dffa71538a73be5e'
+
+[url param]   name:"invitation"
+[url param]   id:"xx"   //列表返回_id字段
+
+------------------------------------------------------------------------------------------------------------------------------------
+添加交流区评论/回复
+curl -X POST '127.0.0.1:54218/api/v1/rolecard/info?name=invitation_comment&userid=2' -H 'Content-Type: application/json' --data-raw '{
+    "send_uid":2,
+    "content":"评论122221",
+    "receive_uid":1,
+    "buss_id":"61a63945dffa71538a73be5e",
+    "comment_id": "61a78659dffa719e3a2b50a7"
+
+}'
+
+[url param]   name:"invitation_comment"
+[url param]   userid:"xx"   //列表返回_id字段
+[body param]   send_uid:1   //评论uid
+[body param]   content:"xx"   //评论内容
+[body param]   receive_uid:2  //被评论uid
+[body param]   buss_id:"61a63945dffa71538a73be5e"   //交流帖子_id
+[body param]   is_origin:1   //新增评论 1 否则传0 或者不传
+[body param]   comment_id:""   //新增评论 不传,系统字段生成  如果不是新增评论 则需要传评论id
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+查看交流区 详情包含评论列表(评论列表第一页)
+
+curl -X GET '127.0.0.1:54218/api/v1/article/detail?name=invitation&userid=1&id=61a63945dffa71538a73be5e'
+
+[url param]   name:invitation
+[url param]   id:  交流区帖子_id
+[url param]   userid:  userid
+
+------------------------------------------------------------------------------------------------------------------------------------
+//交流区评论列表分页
+curl -g -X GET '127.0.0.1:54218/api/v1/rolecard/list?name=invitation_comment&userid=2&page=1&nextpage=1&pagesize=20&filter={"buss_id":"61a63945dffa71538a73be5e"}'
+
+[url param]   name:"invitation_comment"
+[url param]  filter:{"buss_id":"61a63945dffa71538a73be5e"}    --buss_id  必须传 交流区帖子_id
+[url param]  page:1    --进行操作所在的页
+[url param]  nextpage:1    --需要跳转的页
+[url param]  pagesize:10    --需要返回的数据条数
+
+------------------------------------------------------------------------------------------------------------------------------------
+//交流区评论列表数量
+curl -g -X GET '127.0.0.1:54218/api/v1/rolecard/count?name=invitation_comment&userid=1&filter={"buss_id":"61a63945dffa71538a73be5e"}'
+[url param]   name:"invitation_comment" //invitation_comment 交流区评论
+[body param]  filter:{"buss_id":"61a63945dffa71538a73be5e"}    --带type  传不同的类型 ,如果要查询全部,filter 传空即可
+
+------------------------------------------------------------------------------------------------------------------------------------
+// 添加举报
+curl -X POST '127.0.0.1:54218/api/v1/rolecard/info?name=report&userid=2' -H 'Content-Type: application/json' --data-raw '{
+    "buss_id":"61a7861bdffa719e3a2b509f",
+    "buss_name":"invitation_comment",
+    "reason":"test_reason"
+
+}'
+
+[url param]   name:"report"
+[body param]  buss_name: 业务类型 invitation_comment,article_comment,invitation,article
+[body param]  buss_id: 每种业务类型的_id
+[body param]  reason: 举报原因
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+// 举报记录数量
+curl -X GET '127.0.0.1:54218/api/v1/rolecard/count?name=report&userid=1'
+
+[url param]   name:"report"
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+

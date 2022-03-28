@@ -1,0 +1,46 @@
+{
+    "port":":54300",
+    "datadir":"./resource",
+    "picturedir":"./advertisement",
+    "articledir":"./article",
+  "mysql":{
+    "account":"root",
+    "password":"wa5zMIOk2^",
+    "url":"129.204.188.88:3306",
+    "debug": true
+  },
+  "mongodb":{
+    "account":"root",
+    "password":"BBqtfnt&rb",
+    "url":"129.204.188.88:27017"
+  },
+    "admin": [],
+    "email":[
+        {
+            "server":"smtp.163.com",
+            "port":465,
+            "account":"",
+            "password":""
+        }
+    ],
+    "default": {
+        "room-icon":"9ef9d53e9666c9abdcf9a62d428feb65"
+    },
+
+    "alipay": {
+        "app_id": "2021002192614720",
+        "private_key": "MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCmAE7/FVuBHdRsBfATTsLGRKeXQNed96PiIDK0BObB4HeYOINF7txkngbMysByiYxFhxqMOrzmTVINY+1zqaDBu827lfzgxqW7SYaJ1pzlhkIHfGlaEZ1UKvW8vfRhSgVx8OHXZGApvewA58QGyOhjltn1WNQLmYWYRvmBhVs7c4IU19mmcdmQLckG/EORFOdX14xqERxj9fKdNo7ES8KWbtNDOxEtCuFo6VUYK2mIGi3fVydrmJqWgCmTRQ4ZhNLBd/WPcAaP2evNem0ZBI4h0w+vd7UuO6PegNkEZFbYkIZkiOFbg3z73Yp60GsOcP9JgEv8HUcB/xdIDOiukENDAgMBAAECggEAATaZXTXrwErWhZ+ZfJqjw802qF1Z9hacRQfVNwmeIiag2ST4mKdBRx78j7yfoXat5sgxAntfbBN+mQh08NZ5jVDxFQDooz/wcCj+ab1+0hKkIufe4UCltLrHpwSAZ8Ghvo5zKB7csRFpSyxme2I2iJvOpgNrMVaC6nUCV9cArrOLXFDUJBbnGC8f/5+wPRPcgbeY38sf0mgEW6XQw7bf8s3Yw3JIMM3AoA7Bh/WUNL4EhPZkRLNDJqgOl7wyru6w1vDDoAtjD5O+z1D9sq1Is3Qlp47/PhHAG6gXJJQJ01Ev+5PKlYwJpntWlBTRutLbvtWWJSrPc+jhlHsmbTBHmQKBgQD3yreF7yD3GKAHCWpOmUIuc7Wbp90tmYlOOeIGZuSUnfY1pknfraUu0hImv1BSyGtfPpVpNTaxi1oh2HuHCvSLn3NgaVWe6PPILPpbzUYv8W9eiY+sSkSQ3tXpFFswIsO/lHC6BIY/qycvIM8zX1wiK9fDbI6LnqP6IcisPHMc7QKBgQCrgAEVw5W63x5+yNPEdV1dudsT0sWCA7I/BbWU6I1ONYHusToSdDRMnIQG80CLnvZIfhC3v/xx58OPDkXUe2QKZyxdIlsEQ5hwBRUrqUgNoLRV6jwMmJyobR+NxslWFf5R5Q77VZaFMB4B3/A3Vx4t+0a9mkUucZuFLEoqF/MK7wKBgQCoMBU/OF80uKct/4sDjGzqYKl83IR4xgT3brxmwgIWid0q7xKnWxKKZBXj7OkVN2oBvNXnEjJscfycinbV4263MmQ6pWRzNwT48uZ/1yXztrlz/oThWYuOlWG2EZYPZxlceOHGsPl6T66KA4gAA5LissWBpLZgOC5uwe2WUnWDxQKBgQCD2td6tzQgR7j3e0otqpqNG/7Ov+cwbc0WXTpdcWpq7gKm1MW0OHmZSWDMwysl7aKm253Y2Jerr6gQDcYsdm3U/bwDIw3dOmcyAQZk2jLWn27m+z8N5CvV5ogzBdn4ANLWfgjFvekLH5KCmHzk32sJqT6bOcfkzF3oxsOCl4U6KwKBgQCitpyCmIdKnpmL8AV46Nwv/6P+TIBWPYnrATOyjOPzDaTD/dHwtaqT/TaNUVVhCfv3/oNXZAGlpSYhYf5OS+9iWQxJ2udrXYYXA0qEzfRY2aMHhCQJQEkgOwa8LONIB2lLU8RieJXtA40SZ9wDru5zVLDN4fGOLehpLIjkOHWmoQ==",
+        "app_public_cert": "./cert/appCertPublicKey_2021002192614720.crt",
+        "root_cert": "./cert/alipayRootCert.crt",
+        "ali_public_cert": "./cert/alipayCertPublicKey_RSA2.crt",
+        "callback_url": "https://maoyetrpg.com/api/v1/alipay/callback"
+    },
+    "wxpay": {
+        "app_id": "wx4c0a25a7e443c007",
+        "mch_id": "1553493231",
+        "mch_certificate_serial_number": "23F36ACF3EEA5A4745D85A670DB2DC113E716B07",
+        "mch_api_v3_key": "MzFCHFf0zWKjmK4SSnITEPOPbFpjYNDy",
+        "private_key": "./cert/apiclient_key.pem",
+        "callback_url": "https://maoyetrpg.com/api/v1/wxpay/callback"
+    }
+}
